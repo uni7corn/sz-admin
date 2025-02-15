@@ -9,8 +9,10 @@ import { ElMessageBox } from 'element-plus';
 import { useAuthStore } from '@/stores/modules/auth';
 
 // 是否使用socket 当 import.meta.env.VITE_SOCKET_URL 不为空时，启用websocket
-const useSocket = Object.prototype.hasOwnProperty.call(import.meta.env, 'VITE_SOCKET_URL');
-const socketUrl = import.meta.env.VITE_SOCKET_URL;
+//const useSocket = Object.prototype.hasOwnProperty.call(import.meta.env, 'VITE_SOCKET_URL');
+const useSocket = Object.hasOwn(import.meta.env, 'VITE_SOCKET_URL');
+const socketUrl = new URL(import.meta.env.VITE_SOCKET_URL, window.location.origin);
+socketUrl.protocol = socketUrl.protocol === 'https:' ? 'wss:' : 'ws:';
 const MAX_RECONNECT_COUNT = 10;
 
 /**
@@ -54,12 +56,12 @@ export const useSocketStore = defineStore('socket', () => {
             type: 'warning',
             callback: () => {
               // 2.重定向到登陆页
-              router.replace(LOGIN_URL);
+              router.replace(LOGIN_URL).then(r => r);
             }
           });
           break;
         case UPGRADE_CHANNEL:
-          close();
+/*          close();
           // 1.清除 Token
           userStore.clear();
           authStore.clear();
@@ -71,7 +73,7 @@ export const useSocketStore = defineStore('socket', () => {
               // 2.重定向到登陆页
               router.replace(LOGIN_URL);
             }
-          });
+          });*/
           break;
 
         default:

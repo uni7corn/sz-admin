@@ -1,4 +1,93 @@
 # 更新日志
+## v1.0.1-beta （20250215）
+
+- sz-boot-parent：
+  - 依赖升级：
+    - spring-boot-starter-parent：3.4.1  -> 3.4.2。
+    - mybatis-flex.version：1.10.5  -> 1.10.7。
+    - sa-token：1.39.0 -> 1.40.0。
+    - excel-fastexcel：1.0.0 -> 1.1.0。
+    - mysql-connector-j：9.1.0 -> 9.2.0。
+  - 优化：字典类型删除时同步清除缓存。
+  - 优化：统一异常code规范，追加prefix。
+  - 优化：指定目标账户密码修改后，触发“踢下线”功能。
+  - 修改：菜单树增加返回参数。
+  - 优化: 日志格式。**Issue**[#10](https://github.com/feiyuchuixue/sz-admin/issues/10)。（感谢[129duckflew](https://github.com/129duckflew)）。
+  - 新增：第三方开源库和许可证文件说明
+- sz-admin：
+  - 修复：无效Token响应码不一致的问题。
+  - 修复：AES-GCM加密方法在某些场景（浏览器）不可用的问题（行为验证码）。
+  - 优化：【代码生成器】- 生成信息中**上级菜单=目录**时与模块名的联动。
+  - 新增：第三方开源库和许可证文件说明
+## v1.0.0-beta （20250128）| 大型更新
+
+- sz-boot-parent：
+  - 优化：sonar 代码（质量）规范化
+- sz-admin：
+  - 优化：sonar 代码（质量）规范化
+  - 
+## v0.9.0 （20250119）
+
+- sz-boot-parent：
+  - 优化：无效文件清理
+  - 优化：javadoc 注释
+  - 优化：[sz-service-websocket] 同步调整config路径至项目根目录下
+  - 优化：qodana 代码（质量）规范化
+- sz-admin：
+  - 无
+## v0.8.8 （20250118）
+
+- sz-boot-parent：
+  - 修改：Jackson序列化添加对`MultipartFile`类型的支持。
+  - 修改：`router.whitelist` 属性为Set结构。
+  - 优化：系统用户更新时，同步更新缓存信息。
+  - 优化：[行为验证码-滑块验证] 增加对double精度的支持。
+  - 优化：接口白名单，删除非必要的放行接口。
+  - 修复：aop日志打印的一些问题（ http-topic.log）。
+  - 修复：[代码生成器] 预览时插入按钮SQL问题。
+  - 修复：EntityChangeListener 在处理未登录用户数据初始化时的异常问题。
+  - 修复：验证码参数`sys.captcha.requestLimit`未启用时redis中仍然记录了次数的问题。
+  - 修复：[部门管理] 上级部门为`根部门`时编辑校验未通过的问题。
+  - 依赖升级：
+    - spotless-maven-plugin：2.43.0 -> 2.44.1。
+    - mybatis-flex.version：1.10.2  -> 1.10.5。
+    - aws.s3.version：2.29.23 -> 2.29.50。
+    - springdoc-openapi-starter-webmvc-ui：2.7.0  ->  2.8.3。
+    - modelmapper：3.2.1 -> 3.2.2。
+    - swagger-annotations：2.2.26 -> 2.2.27。
+- sz-admin：
+
+  - 修复：个别浏览器Socket异常的问题。
+  - 优化：[行为验证码-滑块验证] 添加对移动端浏览器的支持。
+## v0.8.7 （20250109）
+
+- sz-boot-parent：
+  - 新增：`sz.cors.allowedOrigins`配置项，允许用户通过配置的方式指定限定域名
+  - 修复：springboot启动时打印logback配置信息的问题 && 优化logback配置
+  - 优化：接口防抖逻辑
+    - 当全局设置忽略GET请求的参数为true时，如果GET请求的Controller未标注@Debounce注解，则跳过防抖处理；但若Controller标注了@Debounce注解，即使是GET请求，也会执行防抖逻辑。
+  - 新增：行为验证码-滑块验证。感谢([阳纸伞](https://github.com/1327614618))
+  - 新增：[演示案例] 远程搜索下拉选择组件
+- sz-admin：
+
+  - 新增：行为验证码-滑块验证
+  - 新增：远程搜索下拉选择组件
+  - 新增：[演示案例] 远程搜索下拉选择组件
+## v0.8.6 （20250102）
+
+- sz-boot-parent：
+  - 修复: sys_config 缓存时间问题。
+  - 修改: 移动配置文件至项目【根目录】下。|  <font color="red">可能的破坏性更新 </font>
+  - 修改: 移除pom镜像源配置
+  - 修改: Dockerfile 增加配置目录挂载的支持
+  - 新增: GitHub Action workflow |
+- sz-admin：
+
+  - 修复：VITE自定义变量验证问题
+  - 新增：gzip打包支持
+  - 新增：Dockerfile
+  - 修改：.env.production 配置
+  - 新增：GitHub Action workflow
 ## v0.8.5 （20241229）
 
 - sz-boot-parent：
